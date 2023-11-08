@@ -13,6 +13,16 @@
     <body style="background-color: dimgrey;">
         <br>
         <br>
+        {% for message in get_flashed_messages() %}
+        <div class="container">
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -61,7 +71,7 @@
             <div class="container py-3">
               <div class="row text-center" style='padding: 0 0 1% 0;'>
                   <div class="col">
-                      <span style="color: white;">Connect with us</span>
+                      <span style="color: white;">Connect with me</span>
                   </div>
               </div>
               <div class="row">
@@ -90,7 +100,7 @@
             <!-- Copyright -->
             <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               © 2023 Copyright:
-              <a class="text-white" href="http://127.0.0.1:5000/home">blogify.com</a>
+              <a class="text-white" href="http://127.0.0.1:5000/">fire-predictor.com</a>
             </div>
             <!-- Copyright -->
           </footer>

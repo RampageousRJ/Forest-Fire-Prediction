@@ -1,4 +1,4 @@
-from flask import render_template,request,url_for,redirect
+from flask import render_template,request,url_for,redirect,flash
 from fire import app
 from fire.forms import *
 import joblib
@@ -16,6 +16,11 @@ def predict():
         return redirect(url_for('home'))
     form = PredictForm()
     model = joblib.load('fire/model')
-    predicted_value = model.predict([[form.oxygen.data,form.temperature.data,form.humidity.data]])[0]
+    try:
+        O,T,H = float(form.oxygen.data),float(form.temperature.data),float(form.humidity.data)
+    except ValueError:
+        flash('Values entered are not numeric! Please enter numeric values!')
+        return redirect(url_for('home'))
     form.oxygen.data,form.temperature.data,form.humidity.data="","",""
+    predicted_value = model.predict([[O,T,H]])[0]
     return render_template('home.html',predicted_value=predicted_value,form=form)
